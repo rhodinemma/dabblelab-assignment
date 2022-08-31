@@ -2,10 +2,10 @@ import { gql } from "@apollo/client";
 
 export const ADD_COUNTRY_POPULATION = gql`
   mutation addCountryPopulation(
-    $country: String
-    $year: String
-    $area: Float
-    $totalPopulation: Float
+    $country: String!
+    $year: String!
+    $area: Float!
+    $totalPopulation: Float!
   ) {
     addCountryPopulation(
       country: $country
@@ -24,11 +24,11 @@ export const ADD_COUNTRY_POPULATION = gql`
 
 export const UPDATE_COUNTRY_POPULATION = gql`
   mutation updateCountryPopulation(
-    $id: ID
-    $country: String
-    $year: String
-    $area: Float
-    $totalPopulation: Float
+    $id: ID!
+    $country: String!
+    $year: String!
+    $area: Float!
+    $totalPopulation: Float!
   ) {
     updateCountryPopulation(
       id: $id
@@ -47,7 +47,7 @@ export const UPDATE_COUNTRY_POPULATION = gql`
 `;
 
 export const DELETE_COUNTRY_POPULATION = gql`
-  mutation deleteCountryPopulation($id: ID) {
+  mutation deleteCountryPopulation($id: ID!) {
     deleteCountryPopulation(id: $id)
   }
 `;

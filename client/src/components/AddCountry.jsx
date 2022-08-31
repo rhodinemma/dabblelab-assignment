@@ -11,8 +11,8 @@ const AddCountry = () => {
   const [detail, setDetails] = useState({
     country: "",
     year: "",
-    area: "",
-    totalPopulation: "",
+    area: 0,
+    totalPopulation: 0,
   });
   const { selectedId, setSelectedId } = useContext(CountryContext);
   const [updateCountryPopulation] = useMutation(UPDATE_COUNTRY_POPULATION);
@@ -20,16 +20,11 @@ const AddCountry = () => {
     variables: { id: selectedId },
     onCompleted: (data) => setDetails(data?.getCountryDetail),
   });
-  console.log(data?.getCountryDetail);
+  console.log(detail);
 
   const [addCountryPopulation] = useMutation(ADD_COUNTRY_POPULATION);
   const onSubmit = (e) => {
-    if (
-      detail.country &&
-      detail.year &&
-      detail.area &&
-      detail.totalPopulation === ""
-    ) {
+    if (detail.country && detail.year === "") {
       alert("Please fill all fields! Thank you");
       return;
     }
@@ -39,10 +34,16 @@ const AddCountry = () => {
         variables: {
           country: detail.country,
           year: detail.year,
-          area: detail.area,
-          totalPopulation: detail.totalPopulation,
+          area: parseFloat(detail.area),
+          totalPopulation: parseFloat(detail.totalPopulation),
         },
         refetchQueries: [{ query: GET_COUNTRIES_DETAILS }],
+      });
+      setDetails({
+        country: "",
+        year: "",
+        area: 0,
+        totalPopulation: 0,
       });
     } else {
       updateCountryPopulation({
@@ -50,11 +51,18 @@ const AddCountry = () => {
           id: selectedId,
           country: detail.country,
           year: detail.year,
-          area: detail.area,
-          totalPopulation: detail.totalPopulation,
+          area: parseFloat(detail.area),
+          totalPopulation: parseFloat(detail.totalPopulation),
         },
         refetchQueries: [{ query: GET_COUNTRIES_DETAILS }],
       });
+      setDetails({
+        country: "",
+        year: "",
+        area: 0,
+        totalPopulation: 0,
+      });
+      setSelectedId(0);
     }
   };
   return (
@@ -94,7 +102,7 @@ const AddCountry = () => {
               Area (Square Kilometers)
             </label>
             <input
-              type="text"
+              type="number"
               placeholder="Area of the population goes here"
               className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-blue-400"
               value={detail.area}
@@ -107,7 +115,7 @@ const AddCountry = () => {
               Total Population
             </label>
             <input
-              type="text"
+              type="number"
               placeholder="The overall total population goes here"
               className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-blue-400"
               value={detail.totalPopulation}
