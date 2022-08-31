@@ -1,7 +1,7 @@
 # Dabble Lab Assignment
 
 ## Running the server (Backend)
-This server typically executes CRUD operations on MongoDB using the GraphQL Apollo Client
+This server typically executes CRUD operations on MongoDB using the GraphQL Apollo Express Server.
 
 ## Clone the repository
 git clone https://github.com/rhodinemma/dabblelab-assignment.git
@@ -15,7 +15,10 @@ Visit http://localhost:4000/graphql
 cd client && npm install && npm run dev
 
 ## Screenshots
-![image](https://user-images.githubusercontent.com/63339234/187567264-7ea93aab-f8d6-4f21-83da-e28ab5e1b7fb.png)
-__
+Backend
+___
+![image](https://user-images.githubusercontent.com/63339234/187672268-8595f25a-942c-4fb3-b23f-b5bcb71e76b6.png)
 
-![image](https://user-images.githubusercontent.com/63339234/187567371-be8baf03-e4a9-4a08-bb2e-6de80e538cb6.png)
+Frontend
+___
+![image](https://user-images.githubusercontent.com/63339234/187672520-4c8bc7a1-618b-45cc-b634-6e0ad57d3e67.png)
